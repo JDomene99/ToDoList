@@ -1,7 +1,9 @@
-import express from "express";
-import { PORT } from "./config.js";
+import * as dotenv from 'dotenv'
+import app from './app.js'
+import bdMongo from './db/db.js'
 
+dotenv.config()
+app.listen(process.env.PORT);
+bdMongo()
 
-const app = express();
-app.listen(PORT)
-console.log('server listening on port '+PORT)
+console.log('server listening on port '+process.env.PORT)
