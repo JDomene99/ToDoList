@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { createTask, getTask, editTask } from "../../api/taskFecth";
 import { useNavigate } from "react-router-dom";
 import Switch from '@mui/material/Switch';
+import { ClassNames } from "@emotion/react";
 
 function TaskForm() {
   const navigate = useNavigate();
@@ -22,7 +23,6 @@ function TaskForm() {
     if (params.id) {
       const fetchData = async () => {
         const response = await getTask(params.id);
-        console.log(response);
         setTask({
           title: response.title,
           description: response.description,
@@ -34,8 +34,8 @@ function TaskForm() {
   }, []);
 
   return (
-    <>
-      <h1>{params.id ? "Edit Task" : "New Task"}</h1>
+    <div className="bg-slate-700 ">
+      
       <Formik
         initialValues={task}
         enableReinitialize={true}
@@ -48,7 +48,7 @@ function TaskForm() {
               response = await createTask(values);
             }
 
-            console.log(response);
+  
             navigate("/");
           } catch (error) {
             console.log(error);
@@ -56,30 +56,38 @@ function TaskForm() {
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>title</label>
+          <Form onSubmit={handleSubmit} className="flex flex-col flex-wrap 2xl:w-3/12 mx-auto pt-16 sm:w-5/12 xs:w-9/12">
+            <label className="text-white">Title</label>
             <input
+            className="mb-7"
               type="text"
               name="title"
+              placeholder="Title"
               onChange={handleChange}
               value={values.title}
             />
 
-            <label>description</label>
+            <label className="text-white">Description</label>
             <textarea
+              className="mb-7"
               rows="3"
               name="description"
+              placeholder="Write a description"
               onChange={handleChange}
               value={values.description}
             ></textarea>
             
+            <label className="text-white">Condition</label>
                <Switch name="done" checked={values.done ? true : false} inputProps={{ 'aria-label': 'Switch demo'}} onChange={handleChange}/> 
 
-            <button type="submit">{params.id ? "Edit" : "New"} </button>
+            <button 
+            className="bg-black text-white hover:bg-slate-800 text py-3 rounded-lg"
+            type="submit">{params.id ? "Edit" : "New"}
+             </button>
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 }
 

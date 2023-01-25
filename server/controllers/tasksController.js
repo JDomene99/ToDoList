@@ -11,6 +11,14 @@ export const getTask = async (req, res) =>{
     const post = await Task.findById({ _id: req.params.id });
     res.json(post);
     
+    
+}
+
+export const getTaskByName = async (req, res) =>{
+   
+    const post = await Task.findOne({'title' : req.params.name});
+    res.json(post);
+   
 }
 
 export const createTask = async (req, res) =>{

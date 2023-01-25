@@ -28,7 +28,7 @@ export const getAllTasks = async () => {
 };
 
 export const getTask = async (task) => {
-  const url = "http://localhost:4000/tasks/"+task;
+  const url = "http://localhost:4000/tasks/" + task;
   const response = await fetch(url);
   const data = await response.json();
   return data;
@@ -53,16 +53,15 @@ export const deleteTask = async (task) => {
   } catch (error) {}
 };
 
-export const editTask = async (id,values) => {
+export const editTask = async (id, values) => {
   try {
-   
     const url = "http://localhost:4000/tasks/" + id;
     const response = await fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(values),
     });
-    
+
     if (!response.ok) {
       throw {
         status: response.status,
@@ -72,4 +71,11 @@ export const editTask = async (id,values) => {
       return await response.json();
     }
   } catch (error) {}
+};
+
+export const getAllTasksByName = async (name) => {
+  const url = "http://localhost:4000/tasks/title/" + name;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
 };
