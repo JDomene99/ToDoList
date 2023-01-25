@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   getTask,
   getTasks,
@@ -6,11 +7,14 @@ import {
   updateTask,
   createTask,
 } from "../controllers/tasksController.js";
+
+
 const router = Router();
+
 
 router.get("/tasks", getTasks);
 
-router.get("/task/:id", getTask);
+router.get("/tasks/:id", getTask);
 
 router.post("/tasks", createTask);
 
