@@ -1,6 +1,8 @@
+// const baseUrl = 'http://localhost:4000/';
+const baseUrl = 'http://todolist-api.com/';
 export const createTask = async (task) => {
   try {
-    const url = "http://localhost:4000/tasks";
+    const url = baseUrl;
 
     const response = await fetch(url, {
       method: "POST",
@@ -20,15 +22,17 @@ export const createTask = async (task) => {
 };
 
 export const getAllTasks = async () => {
-  const url = "http://localhost:4000/tasks";
+  const url = baseUrl;
 
-  const response = await fetch(url);
+  const response = await fetch(url+'tasks/');
+  console.log(url+'tasks/');
+
   const data = await response.json();
   return data;
 };
 
 export const getTask = async (task) => {
-  const url = "http://localhost:4000/tasks/" + task;
+  const url = baseUrl+ task;
   const response = await fetch(url);
   const data = await response.json();
   return data;
@@ -36,7 +40,7 @@ export const getTask = async (task) => {
 
 export const deleteTask = async (task) => {
   try {
-    const url = "http://localhost:4000/tasks/" + task;
+    const url = baseUrl + task;
     console.log(url);
     const response = await fetch(url, {
       method: "DELETE",
@@ -55,7 +59,7 @@ export const deleteTask = async (task) => {
 
 export const editTask = async (id, values) => {
   try {
-    const url = "http://localhost:4000/tasks/" + id;
+    const url = baseUrl + id;
     const response = await fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -74,7 +78,7 @@ export const editTask = async (id, values) => {
 };
 
 export const getAllTasksByName = async (name) => {
-  const url = "http://localhost:4000/tasks/title/" + name;
+  const url = baseUrl+"title/" + name;
   const response = await fetch(url);
   const data = await response.json();
   return data;
