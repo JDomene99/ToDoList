@@ -16,9 +16,9 @@ export const getTask = async (req, res) =>{
 
 export const getTaskByName = async (req, res) =>{
    
-    const post = await Task.findOne({'title' : req.params.name});
+    const post = await Task.findOne({'title' : {$regex: req.params.name, $options:'i'}});
     res.json(post);
-   
+     
 }
 
 export const createTask = async (req, res) =>{

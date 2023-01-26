@@ -10,7 +10,6 @@ const bdMongo = ( async () => {
         const db = await mongoose.connect(process.env.MONGODB_URI);
         console.log('Conectado a ', db.connection.name)
     } catch (error) {
-        console.log('a')
         console.log(error)
     }
     

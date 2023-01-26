@@ -7,7 +7,6 @@ dotenv.config()
 
 
 app.listen(process.env.PORT);
-// console.log(app.listen(process.env.PORT))
 bdMongo()
 
 console.log('server listening on port '+process.env.PORT)
